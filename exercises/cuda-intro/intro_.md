@@ -132,13 +132,14 @@ sbatch --account <YOUR BUDGET CODE> submit.sh
 
 ---
 
-<!--
-Cirrus currently (2021-01-20) does not support reservations.
-
-During tutorials we have reserved one node (4 GPUs) for the use of the
-class. You can access this by editing the SLURM script to use the
-reserved queue. This will be given in the class.
--->
+During on campus tutorials we have reserved one node (4 GPUs) for the use of the
+class. You can access this by editing the SLURM script or adding extra
+options to the `sbatch` command:
+```
+sbatch --account m22oc --qos=reservation
+--reservation=<reservation ID>
+```
+(The reservation ID will be given on the day)
 
 ---
 

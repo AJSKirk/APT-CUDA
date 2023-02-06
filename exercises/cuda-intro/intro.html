@@ -198,13 +198,10 @@ cd APT-CUDA/exercises/cuda-intro/</code></pre>
 </section>
 <section class="slide level2">
 
-<!--
-Cirrus currently (2021-01-20) does not support reservations.
-
-During tutorials we have reserved one node (4 GPUs) for the use of the
-class. You can access this by editing the SLURM script to use the
-reserved queue. This will be given in the class.
--->
+<p>During on campus tutorials we have reserved one node (4 GPUs) for the use of the class. You can access this by editing the SLURM script or adding extra options to the <code>sbatch</code> command:</p>
+<pre><code>sbatch --account m22oc --qos=reservation
+--reservation=&lt;reservation ID&gt;</code></pre>
+<p>(The reservation ID will be given on the day)</p>
 </section>
 <section class="slide level2">
 
@@ -231,8 +228,8 @@ reserved queue. This will be given in the class.
 <section id="b-2" class="slide level2">
 <h2>2B</h2>
 <p>Implement the actual kernel function to negate an array element as follows:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> idx <span class="op">=</span> threadIdx<span class="op">.</span>x<span class="op">;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>d_a<span class="op">[</span>idx<span class="op">]</span> <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="op">*</span> d_a<span class="op">[</span>idx<span class="op">];</span></span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> idx <span class="op">=</span> threadIdx<span class="op">.</span>x<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>d_a<span class="op">[</span>idx<span class="op">]</span> <span class="op">=</span> <span class="op">-</span><span class="dv">1</span> <span class="op">*</span> d_a<span class="op">[</span>idx<span class="op">];</span></span></code></pre></div>
 <p>Compile and run the code as before. This time the output should contain the result of negating each element of the input array. Because the array is initialised to the numbers 0 to 255, you should see the numbers 0 down to -255 printed.</p>
 </section>
 <section class="slide level2">
@@ -242,7 +239,7 @@ reserved queue. This will be given in the class.
 <section id="c-4" class="slide level2">
 <h2>2C</h2>
 <p>Implement the kernel again, this time allowing multiple thread blocks. It will be very similar to the previous kernel implementation except that the array index will be computed differently:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> idx <span class="op">=</span> threadIdx<span class="op">.</span>x <span class="op">+</span> <span class="op">(</span>blockIdx<span class="op">.</span>x <span class="op">*</span> blockDim<span class="op">.</span>x<span class="op">);</span></span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode c++"><code class="sourceCode cpp"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> idx <span class="op">=</span> threadIdx<span class="op">.</span>x <span class="op">+</span> <span class="op">(</span>blockIdx<span class="op">.</span>x <span class="op">*</span> blockDim<span class="op">.</span>x<span class="op">);</span></span></code></pre></div>
 </section>
 <section class="slide level2">
 
@@ -260,9 +257,9 @@ reserved queue. This will be given in the class.
 <section id="b-3" class="slide level2">
 <h2>2B</h2>
 <p>Implement the actual kernel function to negate an array element as follows:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode fortran"><code class="sourceCode fortranfixed"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="dt">integer</span> <span class="dt">::</span> idx</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>idx <span class="kw">=</span> threadidx%x</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>aa(idx) <span class="kw">=</span> <span class="kw">-</span><span class="dv">1</span><span class="kw">*</span>aa(idx)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode fortran"><code class="sourceCode fortranfixed"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="dt">integer</span> <span class="dt">::</span> idx</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>idx <span class="kw">=</span> threadidx%x</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>aa(idx) <span class="kw">=</span> <span class="kw">-</span><span class="dv">1</span><span class="kw">*</span>aa(idx)</span></code></pre></div>
 <p>Compile and run the code as before. This time the output should contain the result of negating each element of the input array. Because the array is initialised to the numbers 0 to 255, you should see the numbers 0 down to -255 printed.</p>
 </section>
 <section class="slide level2">
@@ -272,7 +269,7 @@ reserved queue. This will be given in the class.
 <section id="c-5" class="slide level2">
 <h2>2C</h2>
 <p>Implement the kernel again, this time allowing multiple thread blocks. It will be very similar to the previous kernel implementation except that the array index will be computed differently:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode fortran"><code class="sourceCode fortranfixed"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>idx <span class="kw">=</span> threadidx%x <span class="kw">+</span> ((blockidx%x<span class="kw">-</span><span class="dv">1</span>) <span class="kw">*</span> blockdim%x)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode fortran"><code class="sourceCode fortranfixed"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>idx <span class="kw">=</span> threadidx%x <span class="kw">+</span> ((blockidx%x<span class="kw">-</span><span class="dv">1</span>) <span class="kw">*</span> blockdim%x)</span></code></pre></div>
 </section>
 <section class="slide level2">
 

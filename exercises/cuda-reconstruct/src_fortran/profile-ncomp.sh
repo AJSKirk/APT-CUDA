@@ -4,7 +4,7 @@
 #SBATCH --gres=gpu:1
 #SBATCH --time=00:01:00
 #SBATCH --partition=gpu
-#SBATCH --qos=gpu
+#SBATCH --qos=short
 
 NVHPC_VERSION=22.11
 module load nvidia/nvhpc/$NVHPC_VERSION

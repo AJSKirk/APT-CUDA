@@ -176,6 +176,9 @@ M_{i,j} = \frac{M_{i-1,j} + M_{i+1,j} + M_{i,j-1} + M_{i,j+1} - E_{i,j}}{4}
 <pre><code>sbatch --account &lt;YOUR BUDGET CODE&gt; submit.sh</code></pre>
 <p>Query SLURM for your jobs:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="va">$USER</span></span></code></pre></div>
+<p>During on campus tutorials we have reserved one node (4 GPUs) for the use of the class. You can access this by editing the SLURM script or adding extra options to the <code>sbatch</code> command:</p>
+<pre><code>sbatch --account m22oc --qos=reservation
+--reservation=&lt;reservation ID&gt;</code></pre>
 </section>
 <section id="view-the-resulting-image" class="slide level2">
 <h2>View the resulting image</h2>
@@ -183,13 +186,13 @@ M_{i,j} = \frac{M_{i-1,j} + M_{i+1,j} + M_{i,j-1} + M_{i,j+1} - E_{i,j}}{4}
 <ol type="1">
 <li>View directly with <code>display</code> if you have set up X11 forwarding when you connected</li>
 </ol>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load ImageMagick</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">display</span> output.pgm</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load ImageMagick</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">display</span> output.pgm</span></code></pre></div>
 <ol start="2" type="1">
 <li>Use <code>convert</code> to turn the output file into e.g. a jpg or png file and then copy it to your client</li>
 </ol>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load ImageMagick</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">convert</span> output.pgm output.jpg</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load ImageMagick</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">convert</span> output.pgm output.jpg</span></code></pre></div>
 </section>
 <section class="slide level2">
 

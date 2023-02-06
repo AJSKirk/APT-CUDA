@@ -115,6 +115,14 @@ Query SLURM for your jobs:
 squeue -u $USER
 ```
 
+During on campus tutorials we have reserved one node (4 GPUs) for the use of the
+class. You can access this by editing the SLURM script or adding extra
+options to the `sbatch` command:
+```
+sbatch --account m22oc --qos=reservation
+--reservation=<reservation ID>
+```
+
 ## View the resulting image
 
 On Cirrus you can either:
